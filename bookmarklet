@@ -1,15 +1,29 @@
 javascript:(function(){
-  const fish="https://upload.wikimedia.org/wikipedia/commons/1/1c/Goldfish3.jpg";
+  const fishImages=[
+    "https://upload.wikimedia.org/wikipedia/commons/1/1c/Goldfish3.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Clown_fish_in_the_Andaman_Coral_Reef.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/6/6f/Tropical_fish.jpg"
+  ];
 
-  document.querySelectorAll("img").forEach(img=>{
-    img.src = fish;
-    img.srcset = "";
-  });
+  function createFish(){
+    const fish=document.createElement("img");
+    fish.src=fishImages[Math.floor(Math.random()*fishImages.length)];
+    fish.style.position="fixed";
+    fish.style.left="-150px";
+    fish.style.top=Math.random()*window.innerHeight+"px";
+    fish.style.width="100px";
+    fish.style.zIndex="999999";
+    fish.style.pointerEvents="none";
+    fish.style.transition="transform linear";
 
-  document.querySelectorAll("*").forEach(el=>{
-    const style = window.getComputedStyle(el);
-    if(style.backgroundImage !== "none"){
-      el.style.backgroundImage = `url(${fish})`;
-    }
-  });
+    document.body.appendChild(fish);
+
+    const duration=5+Math.random()*5;
+    fish.style.transitionDuration=duration+"s";
+    fish.style.transform=`translateX(${window.innerWidth+300}px)`;
+
+    setTimeout(()=>fish.remove(), duration*1000);
+  }
+
+  setInterval(createFish, 800);
 })();
