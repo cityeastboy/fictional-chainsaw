@@ -1,0 +1,10 @@
+javascript:(function(){
+  const fish=[
+    "https://upload.wikimedia.org/wikipedia/commons/1/1c/Goldfish3.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/3/3a/Clown_fish_in_the_Andaman_Coral_Reef.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/6/6f/Tropical_fish.jpg"
+  ];
+  document.querySelectorAll("img").forEach(img=>{
+    img.src=fish[Math.floor(Math.random()*fish.length)];
+  });
+})();
